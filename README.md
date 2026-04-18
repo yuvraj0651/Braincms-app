@@ -5,32 +5,10 @@
   <b>🚀 A Modular, PHP-Based Content Management System with Admin Panel, Addons & Template Engine</b>
 </p>
 
-<p align="center">
-
-<!-- CORE STACK -->
-<img src="https://img.shields.io/badge/PHP-Core%20Backend-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
-<img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
-<img src="https://img.shields.io/badge/Apache-Server-D22128?style=for-the-badge&logo=apache&logoColor=white"/>
-
-<!-- CMS ARCHITECTURE -->
-<img src="https://img.shields.io/badge/CMS-Content%20Management%20System-blue?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Architecture-Modular%20Design-orange?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Structure-MVC%20Like%20Pattern-purple?style=for-the-badge"/>
-
-<!-- CORE FEATURES BASED ON YOUR CMS -->
-<img src="https://img.shields.io/badge/Admin%20Panel-Dashboard%20System-red?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Auth-System%20Login%2FRegister-green?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Template-System%20Rendering-black?style=for-the-badge"/>
-
-<!-- ADVANCED CMS PARTS (based on your folders) -->
-<img src="https://img.shields.io/badge/Plugins-BrainAddons%20System-ff69b4?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Database-SQL%20Layer-yellow?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Core-System%20Engine-darkblue?style=for-the-badge"/>
-
-<!-- PROJECT STATUS -->
-<img src="https://img.shields.io/badge/Status-Production%20Level%20CMS-success?style=for-the-badge"/>
-
-</p>
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux_Toolkit-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript&logoColor=black)
 
 ---
 
