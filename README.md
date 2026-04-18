@@ -38,11 +38,12 @@ It is built for scalability, extensibility, and real-world CMS usage.
 
 ## ⚙️ Tech Stack
 
-- 🧠 PHP (Core Backend Logic)
-- 🗄️ MySQL (Database)
-- 🎨 HTML, CSS, JS (Frontend UI)
-- ⚡ Apache / XAMPP Server
-- 🧩 Modular CMS Architecture
+- React.js
+- Redux Toolkit
+- Tailwind CSS
+- JavaScript (ES6+)
+- JSON Server
+- Database
 
 ---
 
