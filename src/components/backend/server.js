@@ -29,13 +29,26 @@ app.get("/", (req, res) => {
     });
 });
 
-// ✅ FULL DB VIEW (YEH TU CHAAH RAHA THA)
-app.get("/api/db", (req, res) => {
+
+// ================= AUTH ROUTES =================
+
+// 🔹 GET all users
+app.get("/api/auth", (req, res) => {
     const db = getDB();
-    res.json(db);
+    res.json(db.auth);
 });
 
-// ✅ REGISTER
+// 🔹 GET single user
+app.get("/api/auth/:id", (req, res) => {
+    const db = getDB();
+    const user = db.auth.find(u => u.id === req.params.id);
+
+    if (!user) return res.status(404).json("User not found");
+
+    res.json(user);
+});
+
+// 🔹 REGISTER
 app.post("/api/auth/register", (req, res) => {
     const { fullName, email, password } = req.body;
 
@@ -63,10 +76,10 @@ app.post("/api/auth/register", (req, res) => {
     db.auth.push(newUser);
     saveDB(db);
 
-    res.status(201).json("User registered successfully");
+    res.status(201).json(newUser);
 });
 
-// ✅ LOGIN
+// 🔹 LOGIN
 app.post("/api/auth/login", (req, res) => {
     const { email, password } = req.body;
 
@@ -84,6 +97,76 @@ app.post("/api/auth/login", (req, res) => {
     });
 });
 
+
+// ================= GENERIC CRUD (IMPORTANT 🔥) =================
+
+// 🔹 GET ANY COLLECTION (customers, leads, deals...)
+app.get("/api/:collection", (req, res) => {
+    const db = getDB();
+    const { collection } = req.params;
+
+    if (!db[collection]) {
+        return res.status(404).json("Collection not found");
+    }
+
+    res.json(db[collection]);
+});
+
+// 🔹 POST (CREATE)
+app.post("/api/:collection", (req, res) => {
+    const db = getDB();
+    const { collection } = req.params;
+
+    if (!db[collection]) {
+        return res.status(404).json("Collection not found");
+    }
+
+    const newItem = {
+        id: Date.now().toString(),
+        ...req.body
+    };
+
+    db[collection].push(newItem);
+    saveDB(db);
+
+    res.status(201).json(newItem);
+});
+
+// 🔹 PUT (UPDATE)
+app.put("/api/:collection/:id", (req, res) => {
+    const db = getDB();
+    const { collection, id } = req.params;
+
+    const index = db[collection].findIndex(item => item.id === id);
+
+    if (index === -1) {
+        return res.status(404).json("Item not found");
+    }
+
+    db[collection][index] = {
+        ...db[collection][index],
+        ...req.body
+    };
+
+    saveDB(db);
+
+    res.json(db[collection][index]);
+});
+
+// 🔹 DELETE
+app.delete("/api/:collection/:id", (req, res) => {
+    const db = getDB();
+    const { collection, id } = req.params;
+
+    db[collection] = db[collection].filter(item => item.id !== id);
+
+    saveDB(db);
+
+    res.json({ message: "Deleted successfully" });
+});
+
+
+// ================= PORT =================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
