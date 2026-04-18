@@ -10,25 +10,32 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// In-memory DB (temporary - replace with real DB later)
+// In-memory DB
 let users = [];
 
-// Health check
-app.get("/", (req, res) => {
-    res.send("🚀 BrainCMS API Running...");
+/**
+ * BASE ROUTE
+ */
+app.get("/api", (req, res) => {
+    res.json({
+        message: "🚀 BrainCMS API Running...",
+        status: "success"
+    });
 });
 
-// REGISTER
+/**
+ * REGISTER
+ */
 app.post("/api/auth/register", (req, res) => {
     const { fullName, email, password } = req.body;
 
     if (!fullName || !email || !password) {
-        return res.status(400).json("All fields are required");
+        return res.status(400).json({ message: "All fields are required" });
     }
 
     const existingUser = users.find((u) => u.email === email);
     if (existingUser) {
-        return res.status(400).json("User already exists");
+        return res.status(400).json({ message: "User already exists" });
     }
 
     const newUser = {
@@ -40,21 +47,25 @@ app.post("/api/auth/register", (req, res) => {
 
     users.push(newUser);
 
-    res.status(201).json("User registered successfully");
+    res.status(201).json({
+        message: "User registered successfully",
+    });
 });
 
-// LOGIN
+/**
+ * LOGIN
+ */
 app.post("/api/auth/login", (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json("All fields are required");
+        return res.status(400).json({ message: "All fields are required" });
     }
 
     const user = users.find((u) => u.email === email);
 
     if (!user || user.password !== password) {
-        return res.status(401).json("Invalid credentials");
+        return res.status(401).json({ message: "Invalid credentials" });
     }
 
     res.status(200).json({
@@ -67,7 +78,9 @@ app.post("/api/auth/login", (req, res) => {
     });
 });
 
-// PORT
+/**
+ * PORT
+ */
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
